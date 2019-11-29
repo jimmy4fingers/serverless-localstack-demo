@@ -1,10 +1,9 @@
 version: '3.2'
-
 services:
 
   localstack:
     image: localstack/localstack:latest
-    container_name: localstack_main
+    container_name: localstack
     ports:
       - '4563-4599:4563-4599'
       - '8055:8080'
@@ -25,4 +24,20 @@ services:
       - AWS_ACCESS_KEY_ID=NOID
       - AWS_SECRET_ACCESS_KEY=NOKEY
       - AWS_DEFAULT_REGION=eu-west-1
-    command: --endpoint-url=http://localstack:4575 sns create-topic --name local-topic-test
+    command: 
+      --endpoint-url=http://localstack:4575 sns create-topic --name local-topic-test
+
+  node:
+    container_name: localstack_node
+    build:
+      context: .
+    user: "node"
+    working_dir: /home/node/app
+    environment:
+      - NODE_ENV=production
+    volumes:
+      - ./:/home/node/app
+    expose:
+      - "8081"
+      - "3000"
+    command: "tail -f /dev/null"

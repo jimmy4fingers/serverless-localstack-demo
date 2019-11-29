@@ -1,0 +1,8 @@
+{
+  "name": "serverless-localstack-demo",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "git@github.com:jimmy4fingers/serverless-localstack-demo.git",
+  "author": "jimmy4fingers <jl.missguided@gmail.com>",
+  "license": "MIT"
+}
